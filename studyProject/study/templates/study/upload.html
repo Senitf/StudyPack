@@ -1,0 +1,266 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <title>upload</title>
+  <meta charset="utf-8">
+</head>
+<style>
+.menu{
+  position: relative;
+  right : 3px;
+  top:5px;
+  width:15px;
+}
+h1{
+  text-align: center;
+}
+#upload_wrap{
+    
+    margin : auto;
+    width : 500px;
+    
+}
+#upload_form{
+    border : 0.5px solid gray;
+    padding : 10px;
+}
+.upload_form_list{
+    float : left;
+    line-height: 50px;
+}
+.upload_form_p{
+    margin-left : 30%;
+    line-height: 50px;
+}
+#upload_btn_list{
+    text-align: center;
+}
+.upload_form_btn{
+    width : 50px;
+    border-radius: 5px;
+    border : 0.1px;
+}
+#upload_do_btn{
+    background-color: blue;
+    color : white;
+}
+/* #upload_cancel_btn{
+    
+    
+} */
+#upload_form_textbook{
+    display: none;
+}
+#upload_form_simul{
+    display : block;
+}
+.required{
+    color : red;
+}
+</style>
+<body>
+    <div style="text-align: right; font-size : 0.5em;">
+        <a href="index.html"><img src="{% static 'menual.png' %}" class = "menu">사용법</a>
+        <a href="index.html"><img src="{% static 'notice.png' %}" class = "menu">공지</a>
+        <a href="index.html"><img src="{% static 'login.png' %}" class = "menu">홈화면 </a>
+        <a href="login.html"><img src="{% static 'create.png' %}" class = "menu">회원가입</a>
+      </div>
+    <h1>파일등록</h1>
+    <div id="upload_wrap">
+        <div id="upload_form">
+            <form action="">
+               <div>
+                   <strong class="upload_form_list"><span class="required">* </span> 교재 구분</strong>
+                   <div class="upload_form_p">
+                       <input type="checkbox" class="book_check" value="textbook" onclick="display_control(this.value, this.className)"> 교과서
+                       <input type="checkbox" class="book_check" value="simul" onclick="display_control(this.value, this.className)"> 모의고사
+                    <!-- <select name="" id="select_book" onchange="display_control(this.value)">
+                        <option value="none" selected disabled>교재 구분</option>
+                        <option value="textbook">교과서</option>
+                        <option value="simul">모의고사</option>
+                    </select> -->
+                   </div>
+               </div>
+               <script>
+                   function display_on(targetName){
+                       
+                    document.getElementById(targetName).style.display = 'block';
+                   }
+                   function display_off(targetName){
+                    
+                    document.getElementById(targetName).style.display = 'none';
+                   }
+
+                   function display_control(value, className){
+                       if(value === "simul"){
+                           document.getElementsByClassName(className)[0].checked = false;
+                           document.getElementById("upload_form_textbook").style.display = 'none';
+                           document.getElementById("upload_form_simul").style.display = 'block';
+                       }
+                       else{
+                           document.getElementsByClassName(className)[1].checked = false;
+                           document.getElementById("upload_form_textbook").style.display = 'block';
+                           document.getElementById("upload_form_simul").style.display = 'none';
+                       }
+                    
+                   }
+               </script>
+
+               <div id="upload_form_simul">
+                <div>
+                    
+                    <strong class="upload_form_list"><span class="required">* </span>발행 년도</strong>
+                    <div class="upload_form_p">
+                        <select name="year" id="simul_year" required>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <strong class="upload_form_list"><span class="required">* </span>월</strong>
+                    <div class="upload_form_p">
+                        <select name="month" id="simul_month" required>
+                            <option value="2020">3</option>
+                            <option value="2019">6</option>
+                            <option value="2018">9</option>
+                            <option value="2018">11 & 수능</option>
+                            <option value="2018">수능특강</option>
+                            <option value="2018">수능완성</option>
+                            <option value="2018">영독연</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <strong class="upload_form_list"><span class="required">* </span>학년</strong>
+                    <div class="upload_form_p">
+                        <select name="month" id="simul_month" required>
+                            <option value="1">1학년</option>
+                            <option value="2">2학년</option>
+                            <option value="3">3학년</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <strong class="upload_form_list"><span class="required">* </span>파일 업로드</strong>
+                    <div class="upload_form_p">
+                        <input type="file" required>
+                    </div>
+                </div>
+                
+
+               </div>
+
+               <div id = "upload_form_textbook">
+                    
+                    <div>
+                        <strong class="upload_form_list"><span class="required">* </span>발행 년도</strong>
+                        <div class="upload_form_p">
+                            <select name="year" id="textbook_year" required>
+                                <option value="2015">2015</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+
+                    <div>
+                        <strong class="upload_form_list"><span class="required">* </span>교재 종류</strong>
+                        <div class="upload_form_p">
+                            <select name="textbook_type" id="textbook_type" required>
+                                <option value="영어">영어</option>
+                                <option value="영어1">영어1</option>
+                                <option value="영어2">영어2</option>
+                                <option value="영어회화">영어회화</option>
+                                <option value="영어독해와작문">영어독해와작문</option>
+                                <option value="실용영어">실용영어</option>
+                                <option value="영어권문화">영어권문화</option>
+                                <option value="영미문학읽기">영미문학읽기</option>
+                                <option value="실용영어2">실용영어2</option>
+                                <option value="심화영어1">심화영어1</option>
+                                <option value="심화영어2">심화영어2</option>
+                                <option value="심화영어독해1">심화영어독해1</option>
+                                <option value="심화영어독해2">심화영어독해2</option>
+                                <option value="심화회화1">심화회화1</option>
+                                <option value="심화회화2">심화회화2</option>
+                                <option value="심화작문1">심화작문1</option>
+                                <option value="심화작문2">심화작문2</option>
+                            
+                            </select>
+                        </div>
+                        
+
+                    </div>
+                    
+                    <div>
+                        <strong class="upload_form_list"><span class="required">* </span>출판사(주관)</strong>
+                        <div class="upload_form_p">
+                            <select name="publisher" id="publisher" required>
+                                <option value="YBM">YBM</option>
+                                <option value="교학">교학</option>
+                                <option value="금성">금성</option>
+                                <option value="능률">능률</option>
+                                <option value="다락원">다락원</option>
+                                <option value="동아">동아</option>
+                                <option value="미래">미래</option>
+                                <option value="비상">비상</option>
+                                <option value="지학">지학</option>
+                                <option value="천재">천재</option>
+    
+                            </select>
+                        </div>
+                        
+
+                    </div>
+                    <div>
+                        <strong class="upload_form_list"><span class="required">* </span>저자</strong>
+                        <div class="upload_form_p">
+                            <input type="text" required>
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <strong class="upload_form_list"><span class="required">* </span>단원</strong>
+                        <div class="upload_form_p">
+                            <select name="" id="" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <strong class="upload_form_list"><span class="required">* </span>종류</strong>
+                        <div class="upload_form_p">
+                            <select name="" id="" required>
+                                <option value="손필기">손필기</option>
+                                <option value="워크북">워크북</option>
+                                <option value="변형문제">변형문제</option>
+                                <option value="유의어">유의어</option>
+                            </select>
+                        </div>
+                        
+                        
+                    </div>
+                    <div>
+                        <strong class="upload_form_list"><span class="required">* </span>파일 업로드</strong>
+                        <div class="upload_form_p">
+                            <input type="file" required>
+                        </div>
+                    </div>
+                    
+               </div>
+               <div id="upload_btn_list">
+                <input type="submit" value="등록" class="upload_form_btn" id="upload_do_btn">
+                <input type="button" value="취소" class="upload_form_btn" id="upload_cancel_btn">
+            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
