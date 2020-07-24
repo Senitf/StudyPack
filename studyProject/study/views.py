@@ -24,7 +24,7 @@ def create(request):
         content.content_file = request.FILES['content_file']
         content.save()
     else:
-        content = Content_1()
+        content = Content_2()
         content.grade = request.GET['grade']
         content.month = request.GET['month']
         content.content_type = request.GET['content_type']
