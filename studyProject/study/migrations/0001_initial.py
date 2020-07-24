@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('content_type', models.CharField(max_length=10)),
                 ('content_number', models.CharField(max_length=5)),
                 ('category', models.CharField(max_length=10)),
-                ('content_file', models.ImageField(upload_to=study.models.Content_1.file_upload_to)),
+                ('content_file', models.ImageField(upload_to='images/')),
             ],
         ),
         migrations.CreateModel(
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('content_label', models.CharField(max_length=10)),
                 ('content_type', models.CharField(max_length=10)),
                 ('content_number', models.CharField(max_length=5)),
-                ('content_file', models.ImageField(upload_to=study.models.Content_2.file_upload_to)),
+                ('content_file', models.ImageField(upload_to='images/')),
             ],
         ),
     ]
