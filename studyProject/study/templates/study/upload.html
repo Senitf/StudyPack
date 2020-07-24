@@ -66,13 +66,17 @@ h1{
 }
 </style>
 <body>
-    <div style="text-align: right; font-size : 0.5em;">
+    <div style="text-align: right; font-size : 1em;">
+        <a href="{% url 'home' %}">메인페이지</a>
+        <a href="{% url 'upload' %}">업로드페이지</a>
+        <a href="{% url 'download' %}">다운로드페이지</a>
+    <!--     
         <a href="index.html"><img src="{% static 'menual.png' %}" class = "menu">사용법</a>
         <a href="index.html"><img src="{% static 'notice.png' %}" class = "menu">공지</a>
         <a href="index.html"><img src="{% static 'login.png' %}" class = "menu">홈화면 </a>
-        <a href="login.html"><img src="{% static 'create.png' %}" class = "menu">회원가입</a>
+        <a href="login.html"><img src="{% static 'create.png' %}" class = "menu">회원가입</a> -->
       </div>
-    <h1>파일등록</h1>
+    <h1>업로드 페이지</h1>
     <div id="upload_wrap">
         <div id="upload_form">
             <form method="post" enctype="multipart/form-data" novalidate action="{% url 'create' %">
