@@ -69,11 +69,12 @@ h1{
     <h1>파일등록</h1>
     <div id="upload_wrap">
         <div id="upload_form">
-            <form action="">
+            <form method="post" enctype="multipart/form-data" novalidate action="{% url 'create' %">
+            {% csrf_token %}
                <div>
                    <strong class="upload_form_list"><span class="required">* </span> 교재 구분</strong>
                    <div class="upload_form_p">
-                       <input type="checkbox" class="book_check" value="textbook" onclick="display_control(this.value, this.className)"> 교과서
+                       <input type="checkbox" class="book_check" value="textbook" name="content_index" onclick="display_control(this.value, this.className)"> 교과서
                        <input type="checkbox" class="book_check" value="simul" onclick="display_control(this.value, this.className)"> 모의고사
                     <!-- <select name="" id="select_book" onchange="display_control(this.value)">
                         <option value="none" selected disabled>교재 구분</option>
@@ -137,7 +138,7 @@ h1{
                 <div>
                     <strong class="upload_form_list"><span class="required">* </span>학년</strong>
                     <div class="upload_form_p">
-                        <select name="month" id="simul_month" required>
+                        <select name="grade" id="simul_month" required>
                             <option value="1">1학년</option>
                             <option value="2">2학년</option>
                             <option value="3">3학년</option>
@@ -147,7 +148,7 @@ h1{
                 <div>
                     <strong class="upload_form_list"><span class="required">* </span>파일 업로드</strong>
                     <div class="upload_form_p">
-                        <input type="file" required>
+                        <input type="file" name="content_file" required>
                     </div>
                 </div>
                 
@@ -250,7 +251,7 @@ h1{
                     <div>
                         <strong class="upload_form_list"><span class="required">* </span>파일 업로드</strong>
                         <div class="upload_form_p">
-                            <input type="file" required>
+                            <input type="file" name="content_file" required>
                         </div>
                     </div>
                     

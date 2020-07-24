@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', study.views.home, name="home"),
     path('upload/', study.views.upload, name="upload"),
+    path('upload/create', study.views.create, name="create"),
+    path('download/', study.views.download, name="download"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
