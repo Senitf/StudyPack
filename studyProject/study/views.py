@@ -9,9 +9,8 @@ def home(request):
 
 def upload(request):
     if request.method == 'POST':
-        content_index_1 = request.POST.get('content_index_1')
-        content_index_2 = request.POST.get('content_index_2')
-        if content_index_1 == "simul":
+        content_index = request.POST.get('content_index')
+        if content_index == "simul":
             content = Content_1()
             content.year = request.POST.get('year')
             content.month = request.POST.get('month')
@@ -27,8 +26,8 @@ def upload(request):
             else:
                 content.content_number_begin = request.POST.get('content_number_begin')
                 content.content_number_end = content.content_number_begin
-                content_text = request.POST.get('content_text')
-                content.content_file = text_To_Image(content_text)
+                content.content_text = request.POST.get('content_text')
+                content.save()
                 return redirect('home')
 
         else:
@@ -38,6 +37,7 @@ def upload(request):
             content.publisher = request.POST.get('publisher')
             content.author = request.POST.get('author')
             content.content_chapter = request.POST.get('content_chapter')
+            content.category = request.POST.get('category')
             if content.category == "handmade":
                 content.content_file = request.POST.get('content_file')
                 content.content_number_begin = request.POST.get('content_number_begin')
@@ -48,8 +48,8 @@ def upload(request):
             else:
                 content.content_number_begin = request.POST.get('content_number_begin')
                 content.content_number_end = content.content_number_begin
-                content_text = request.POST.get('content_text')
-                content.content_file = text_To_Image(content_text)
+                content.content_text = request.POST.get('content_text')
+                content.save()
 
                 return redirect('home')
     else:
