@@ -15,4 +15,7 @@ index.html, upload.html 구성 <br>
 index.html upload.html download.html outline fix <br>
 data structure & upload feature fix <br>
 
+20/07/27 <br>
+data model fix end <br>
+
 --
