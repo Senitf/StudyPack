@@ -11,4 +11,8 @@
 주요 데이터 모델 수정 <br>
 index.html, upload.html 구성 <br>
 
+20/07/24 <br>
+index.html upload.html download.html outline fix <br>
+data structure & upload feature fix <br>
+
 --
