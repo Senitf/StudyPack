@@ -6,64 +6,64 @@
   <meta charset="utf-8">
 </head>
 <style>
-.menu{
-  position: relative;
-  right : 3px;
-  top:5px;
-  width:15px;
-}
-h1{
-  text-align: center;
-}
-#upload_wrap{
-    
-    margin : auto;
-    width : 500px;
-    
-}
-#upload_form{
-    border : 0.5px solid gray;
-    padding : 10px;
-}
-.upload_form_list{
-    float : left;
-    line-height: 50px;
-}
-.upload_form_p{
-    margin-left : 30%;
-    line-height: 50px;
-}
-#upload_btn_list{
+    .menu{
+    position: relative;
+    right : 3px;
+    top:5px;
+    width:15px;
+    }
+    h1{
     text-align: center;
-}
-.upload_form_btn{
-    width : 50px;
-    border-radius: 5px;
-    border : 0.1px;
-}
-#upload_do_btn{
-    background-color: blue;
-    color : white;
-}
-/* #upload_cancel_btn{
-    
-    
-} */
-#upload_form_textbook{
-    display: none;
-}
-#upload_form_simul{
-    display : none;
-}
-.upload_form_common{
-    display : none;
-}
-.upload_form_common_file{
-    display : none;
-}
-.required{
-    color : red;
-}
+    }
+    #upload_wrap{
+        
+        margin : auto;
+        width : 500px;
+        
+    }
+    #upload_form{
+        border : 0.5px solid gray;
+        padding : 10px;
+    }
+    .upload_form_list{
+        float : left;
+        line-height: 50px;
+    }
+    .upload_form_p{
+        margin-left : 30%;
+        line-height: 50px;
+    }
+    #upload_btn_list{
+        text-align: center;
+    }
+    .upload_form_btn{
+        width : 50px;
+        border-radius: 5px;
+        border : 0.1px;
+    }
+    #upload_do_btn{
+        background-color: blue;
+        color : white;
+    }
+    /* #upload_cancel_btn{
+        
+        
+    } */
+    #upload_form_textbook{
+        display: none;
+    }
+    #upload_form_simul{
+        display : none;
+    }
+    .upload_form_common{
+        display : none;
+    }
+    .upload_form_common_file{
+        display : none;
+    }
+    .required{
+        color : red;
+    }
 </style>
 <body>
     <div style="text-align: right; font-size : 1em;">
@@ -211,7 +211,7 @@ h1{
                     <div>
                         <strong class="upload_form_list"><span class="required">* </span>교재 종류</strong>
                         <div class="upload_form_p">
-                            <select value="textbook_type" id="textbook_type" required>
+                            <select name="content_label"value="textbook_type" id="textbook_type" required>
                                 <option value="" >교재 선택</option>
                                 <option value="영어">영어</option>
                                 <option value="영어1">영어1</option>
@@ -240,7 +240,7 @@ h1{
                     <div>
                         <strong class="upload_form_list"><span class="required">* </span>출판사(주관)</strong>
                         <div class="upload_form_p">
-                            <select value="publisher" id="publisher" required>
+                            <select name="publisher" value="publisher" id="publisher" required>
                                 <option value="" >출판사 선택</option>
                                 <option value="YBM">YBM</option>
                                 <option value="교학">교학</option>
@@ -260,14 +260,14 @@ h1{
                     <div>
                         <strong class="upload_form_list"><span class="required">* </span>저자</strong>
                         <div class="upload_form_p">
-                            <input type="text" required>
+                            <input type="text" name="author" required>
                         </div>
                         
                     </div>
                     <div>
                         <strong class="upload_form_list"><span class="required">* </span>단원</strong>
                         <div class="upload_form_p">
-                            <select name="" id="" required>
+                            <select name="content_chapter" id="" required>
                                 <option value="" >단원 선택</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -399,11 +399,11 @@ h1{
                 <div id="simul_text" class="upload_form_common_file">
                     <strong class="upload_form_list"><span class="required">* </span>지문 번호</strong>
                         <div class="upload_form_p">
-                            <input type="number" min="18" max="45" required> </br>
+                            <input type="number" name="content_number_begin" min="18" max="45" required> </br>
                         </div>
                     <strong class="upload_form_list"><span class="required">* </span>지문 입력</strong>
                         <div class="upload_form_p">
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                            <textarea name="content_text" id="" cols="30" rows="10"></textarea>
                         </div>
                 </div>
             </div>

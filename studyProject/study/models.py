@@ -45,7 +45,9 @@ class Content_2(models.Model): #교과서
     '''
 
     publisher = models.CharField(max_length=50) #출판사
+    author = models.CharField(max_length=50) #저자
     content_label = models.CharField(max_length=50)#교재종류
-    content_type = models.CharField(max_length=50) #유형
-    content_number = models.CharField(max_length=50) #지문번호
+    content_chapter = models.CharField(max_length=50) #단원
+    content_number_begin = models.CharField(max_length=50) #지문번호
+    content_number_end = models.CharField(max_length=50) #지문번호
     content_file = models.ImageField(blank=False, null=False, upload_to='images/') #파일
