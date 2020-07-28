@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Applications/mampstack-7.3.19-0/apache2/htdocs/Web_dbooks/git/StudyProject/venv"
+VIRTUAL_ENV="/Users/seni/Desktop/GIT/StudyProject/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

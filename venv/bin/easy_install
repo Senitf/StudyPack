@@ -1,5 +1,4 @@
-#!/Applications/mampstack-7.3.19-0/apache2/htdocs/Web_dbooks/git/StudyProject/venv/bin/python3
-
+#!/Users/seni/Desktop/GIT/StudyProject/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -8,7 +8,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/Applications/mampstack-7.3.19-0/apache2/htdocs/Web_dbooks/git/StudyProject/venv"
+setenv VIRTUAL_ENV "/Users/seni/Desktop/GIT/StudyProject/venv"
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"

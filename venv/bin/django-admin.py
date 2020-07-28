@@ -1,4 +1,4 @@
-#!/Applications/mampstack-7.3.19-0/apache2/htdocs/Web_dbooks/git/StudyProject/venv/bin/python3
+#!/Users/seni/Desktop/GIT/StudyProject/venv/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
