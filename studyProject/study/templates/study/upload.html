@@ -6,64 +6,64 @@
   <meta charset="utf-8">
 </head>
 <style>
-.menu{
-  position: relative;
-  right : 3px;
-  top:5px;
-  width:15px;
-}
-h1{
-  text-align: center;
-}
-#upload_wrap{
-    
-    margin : auto;
-    width : 500px;
-    
-}
-#upload_form{
-    border : 0.5px solid gray;
-    padding : 10px;
-}
-.upload_form_list{
-    float : left;
-    line-height: 50px;
-}
-.upload_form_p{
-    margin-left : 30%;
-    line-height: 50px;
-}
-#upload_btn_list{
+    .menu{
+    position: relative;
+    right : 3px;
+    top:5px;
+    width:15px;
+    }
+    h1{
     text-align: center;
-}
-.upload_form_btn{
-    width : 50px;
-    border-radius: 5px;
-    border : 0.1px;
-}
-#upload_do_btn{
-    background-color: blue;
-    color : white;
-}
-/* #upload_cancel_btn{
-    
-    
-} */
-#upload_form_textbook{
-    display: none;
-}
-#upload_form_simul{
-    display : none;
-}
-.upload_form_common{
-    display : none;
-}
-.upload_form_common_file{
-    display : none;
-}
-.required{
-    color : red;
-}
+    }
+    #upload_wrap{
+        
+        margin : auto;
+        width : 500px;
+        
+    }
+    #upload_form{
+        border : 0.5px solid gray;
+        padding : 10px;
+    }
+    .upload_form_list{
+        float : left;
+        line-height: 50px;
+    }
+    .upload_form_p{
+        margin-left : 30%;
+        line-height: 50px;
+    }
+    #upload_btn_list{
+        text-align: center;
+    }
+    .upload_form_btn{
+        width : 50px;
+        border-radius: 5px;
+        border : 0.1px;
+    }
+    #upload_do_btn{
+        background-color: blue;
+        color : white;
+    }
+    /* #upload_cancel_btn{
+        
+        
+    } */
+    #upload_form_textbook{
+        display: none;
+    }
+    #upload_form_simul{
+        display : none;
+    }
+    .upload_form_common{
+        display : none;
+    }
+    .upload_form_common_file{
+        display : none;
+    }
+    .required{
+        color : red;
+    }
 </style>
 <body>
     <div style="text-align: right; font-size : 1em;">
@@ -79,13 +79,13 @@ h1{
     <h1>업로드 페이지</h1>
     <div id="upload_wrap">
         <div id="upload_form">
-            <form method="post" enctype="multipart/form-data" action="{% url 'upload' %}" novalidate >
+            <form method="post" enctype="multipart/form-data" action="{% url 'upload' %}" >
             {% csrf_token %}
                <div>
                    <strong class="upload_form_list"><span class="required">* </span> 교재 구분</strong>
                    <div class="upload_form_p">
-                       <input type="checkbox" name="content_index_1" class="book_check" value ="textbook" onclick="display_control(this.value, this.className)"> 교과서
-                       <input type="checkbox" name="content_index_2" class="book_check" value="simul" onclick="display_control(this.value, this.className)"> 모의고사
+                       <input type="checkbox" name="content_index" class="book_check" value ="textbook" onclick="display_control(this.value, this.className);" required> 교과서
+                       <input type="checkbox" name="content_index" class="book_check" value="simul" onclick="display_control(this.value, this.className);" required> 모의고사
                     <!-- <select name="" id="select_book" onchange="display_control(this.value)">                        <option value="none" selected disabled>교재 구분</option>
                         <option value="textbook">교과서</option>
                         <option value="simul">모의고사</option>
@@ -96,39 +96,48 @@ h1{
 
                    //display control 안쪽도 함수로 나누려고 했는데 이상하게 안됨;
                    //index.html에서는 됐는뎅;
-                //    function display_on(targetName){
+                   function display_on(targetName){
+                    document.getElementById(targetName).style.display = 'block';
+                   }
+                   function display_off(targetName){
+                    document.getElementById(targetName).style.display = 'none';
+                   }
+                   function required_control(className, boolvalue){
+                       var check_count = document.getElementsByClassName(className).length;
+                       for(var i=0; i<check_count; i++){
+                           document.getElementsByClassName(className)[i].required = boolvalue;
+                       }
                        
-                //     document.getElementById(targetName).style.display = 'block';
-                //    }
-                //    function display_off(targetName){
-                    
-                //     document.getElementById(targetName).style.display = 'none';
-                //    }
-
-
+                       //textbook의 display 상황이면 simul checkbox의 required를 false로 한다.
+                       if(className === "textbook" && boolvalue === true){
+                           document.getElementsByClassName("book_check")[1].required = false;
+                       }
+                       if(className === "simul" && boolvalue === true){
+                           document.getElementsByClassName("book_check")[0].required = false;
+                       }
+                   }
+                   
                    //교재구분에서 교과서, 모의고사 선택할때 나오는 목록이 달라지게 하는 함수
                    function display_control(value, className){
-
-
                        if(value === "simul"){
                            document.getElementsByClassName(className)[0].checked = false;
-                           document.getElementById("upload_form_textbook").style.display = 'none';
-                           
-
-                           document.getElementById("upload_form_simul").style.display = 'block';
+                           display_off("upload_form_textbook");   
+                           display_on("upload_form_simul");
+                           required_control("simul", true);
+                           required_control("textbook", false);
                            
                        }
                        else if(value === "textbook"){
                            document.getElementsByClassName(className)[1].checked = false;
-                           document.getElementById("upload_form_simul").style.display = 'none';
-                           
-
-                           document.getElementById("upload_form_textbook").style.display = 'block';
+                           display_off("upload_form_simul");
+                           display_on("upload_form_textbook");
+                           required_control("textbook", true);
+                           required_control("simul", false);
                            
                        }
                        else{
-                        document.getElementById("upload_form_simul").style.display = 'none';
-                        document.getElementById("upload_form_textbook").style.display = 'none';
+                           display_off("upload_form_simul");
+                           display_off("upload_form_textbook");
                        }
 
                     //    공통 카테고리 display control
@@ -143,6 +152,7 @@ h1{
                 <strong class="upload_form_list"><span class="required">* </span>발행 년도</strong>
                 <div class="upload_form_p">
                     <select name="year" value="year" id="common_year" required>
+                        <option value="" >발행년도 선택</option>
                         <option value="2020">2020</option>
                         <option value="2019">2019</option>
                         <option value="2018">2018</option>
@@ -168,7 +178,8 @@ h1{
                 <div>
                     <strong class="upload_form_list"><span class="required">* </span>월</strong>
                     <div class="upload_form_p">
-                        <select name="month" value="month" id="simul_month" required>
+                        <select name="month" value="month" id="simul_month" class="simul" required>
+                            <option value="" >월 선택</option>
                             <option value="3">3</option>
                             <option value="6">6</option>
                             <option value="9">9</option>
@@ -182,7 +193,8 @@ h1{
                 <div>
                     <strong class="upload_form_list"><span class="required">* </span>학년</strong>
                     <div class="upload_form_p">
-                        <select name="grade" value="month" id="simul_month" required>
+                        <select name="grade" value="month" id="simul_month" class="simul" required>
+                            <option value="">학년 선택</option>
                             <option value="1">1학년</option>
                             <option value="2">2학년</option>
                             <option value="3">3학년</option>
@@ -206,7 +218,8 @@ h1{
                     <div>
                         <strong class="upload_form_list"><span class="required">* </span>교재 종류</strong>
                         <div class="upload_form_p">
-                            <select value="textbook_type" id="textbook_type" required>
+                            <select name="content_label"value="textbook_type" id="textbook_type" class="textbook" required>
+                                <option value="" >교재 선택</option>
                                 <option value="영어">영어</option>
                                 <option value="영어1">영어1</option>
                                 <option value="영어2">영어2</option>
@@ -234,7 +247,8 @@ h1{
                     <div>
                         <strong class="upload_form_list"><span class="required">* </span>출판사(주관)</strong>
                         <div class="upload_form_p">
-                            <select value="publisher" id="publisher" required>
+                            <select name="publisher" value="publisher" id="publisher" class="textbook" required>
+                                <option value="" >출판사 선택</option>
                                 <option value="YBM">YBM</option>
                                 <option value="교학">교학</option>
                                 <option value="금성">금성</option>
@@ -245,7 +259,6 @@ h1{
                                 <option value="비상">비상</option>
                                 <option value="지학">지학</option>
                                 <option value="천재">천재</option>
-    
                             </select>
                         </div>
                         
@@ -254,14 +267,15 @@ h1{
                     <div>
                         <strong class="upload_form_list"><span class="required">* </span>저자</strong>
                         <div class="upload_form_p">
-                            <input type="text" required>
+                            <input type="text" name="author" class="textbook" required>
                         </div>
                         
                     </div>
                     <div>
                         <strong class="upload_form_list"><span class="required">* </span>단원</strong>
                         <div class="upload_form_p">
-                            <select name="" id="" required>
+                            <select name="content_chapter" id="" class="textbook" required>
+                                <option value="" >단원 선택</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -284,7 +298,7 @@ h1{
                 <strong class="upload_form_list"><span class="required">* </span>종류</strong>
                 <div class="upload_form_p">
                     <select name="category" id="" onchange="display_change(this.options[this.selectedIndex].value)" required>
-                        <option value="none" selected disabled>종류 선택</option>
+                        <option value="" >종류 선택</option>
                         <option value="handmade">손필기</option>
                         <!-- <option value="워크북">워크북</option> -->
                         <option value="regist_text">지문등록</option>
@@ -295,15 +309,20 @@ h1{
             <script>
 
                 //종류에서 손필기, 지문등록 두가지 중에서 선택할때 나오는 목록 달라지게 하는 함수
+
                 function display_change(value){
                     //손필기 선택
                     if(value === "handmade"){
                             document.getElementById("simul_file").style.display = 'block';
                             document.getElementById("simul_text").style.display = 'none';
+                            required_control("handmade", true);
+                            required_control("input_text", false);
                         }
                     else{
                         document.getElementById("simul_file").style.display = 'none';
                         document.getElementById("simul_text").style.display = 'block';
+                        required_control("input_text", true);
+                        required_control("handmade", false);
                     }
                 }
 
@@ -312,12 +331,13 @@ h1{
                 <div id="simul_file" class="upload_form_common_file">
                     <strong class="upload_form_list"><span class="required">* </span>손필기 파일 업로드</strong>
                     <div class="upload_form_p">
-                        <input name="content_file"  type="file" required>
+                        <input name="content_file"  type="file" accept=".pdf" class="handmade" required>
                     </div>
 
                     <strong class="upload_form_list"><span class="required">* </span>지문 범위</strong>
                     <div class="upload_form_p">
-                        <select name="content_number_begin" id="" onchange="change_max(this.selectedIndex)">
+                        <select name="content_number_begin" id="" onchange="change_max(this.selectedIndex)" class="handmade" required>
+                            <option value="" >시작 지문 번호</option>
                             <option value="18">18</option>
                             <option value="19">19</option>
                             <option value="20">20</option>
@@ -346,7 +366,8 @@ h1{
                             <option value="43">43~45</option>
                         </select>
                         <strong> ~ </strong>
-                        <select name="content_number_end" id="selected_max">
+                        <select name="content_number_end" id="selected_max" required>
+                            <option value="" >끝 지문 번호</option>
                             <option value="18">18</option>
                             <option value="19">19</option>
                             <option value="20">20</option>
@@ -378,10 +399,10 @@ h1{
                     <script>
                         //max 범위조정
                         function change_max(value){
-                            for(var i=0; i<value; i++){
+                            for(var i=1; i<value; i++){
                                 document.getElementById("selected_max").options[i].style.display = 'none';
                             }
-                            for(var i=value; i<16; i++){
+                            for(var i=value; i<17; i++){
                                 document.getElementById("selected_max").options[i].style.display = 'block';
                             }
                         }
@@ -390,19 +411,23 @@ h1{
                 <div id="simul_text" class="upload_form_common_file">
                     <strong class="upload_form_list"><span class="required">* </span>지문 번호</strong>
                         <div class="upload_form_p">
-                            <input type="number" min="18" max="45" required> </br>
+                            <input type="number" name="content_number_begin" min="18" max="45" class="input_text" required> </br>
                         </div>
                     <strong class="upload_form_list"><span class="required">* </span>지문 입력</strong>
                         <div class="upload_form_p">
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                            <textarea name="content_text" id="" cols="30" rows="10" class="input_text" required></textarea>
                         </div>
                 </div>
             </div>
 
             <div id="upload_btn_list">
-                <input type="submit" value="등록" class="upload_form_btn" id="upload_do_btn">
-                <input type="button" value="취소" class="upload_form_btn" id="upload_cancel_btn">
+                <input type="submit" value="등록" class="upload_form_btn" id="upload_do_btn" onclick="">
+                <button class="upload_form_btn" id="upload_cancel_btn" formaction="{% url 'home' %}">취소</button>
+                <!-- <input type="button" value="취소" class="upload_form_btn" id="upload_cancel_btn" onclick="location.href='{% url 'home' %}'"> -->
             </div>
+            <script>
+                
+            </script>
             </form>
         </div>
     </div>
