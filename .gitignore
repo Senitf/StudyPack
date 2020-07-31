@@ -7,4 +7,4 @@ local_settings.py
 db.sqlite3
 media
 .DS_Store
-images
+studyProject/uploads/
