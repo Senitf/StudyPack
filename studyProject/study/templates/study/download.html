@@ -396,12 +396,12 @@ h1{
       p.appendChild(newTR);
       index_file++;
     }
-
-    function all_checkbox_off(name){
-      var check_count = document.getElementsByClassName(name).length;
-      for(var i=0; i<check_count; i++){
-        document.getElementsByClassName(name)[i].checked=false;
-      }
+    /* #upload_cancel_btn{
+        
+        
+    } */
+    #form_textbook{
+        display : none;
     }
     function all_checkbox_on(name){
       var check_count = document.getElementsByClassName(name).length;
@@ -418,22 +418,8 @@ h1{
       }
       return check_count_real;
     }
-
-    function add_download_textbook(){
-      var check_count = check_count_list("type_list");
-      for(var i=0; i<check_count; i++){
-        newTR = document.createElement("tr");
-        td = `${td}${add_download_list_dropdown("publisher")}`;
-        td = `${td}-${add_download_list_dropdown("textbook_type")}`;
-
-        // td = `${td}${add_download_list("grade", newTR, td)}`;
-        // td = `${td}-${add_download_list("year", newTR, td)}`;
-        // td = `${td}-${add_download_list("month", newTR, td)}`;
-        td = `${td}-${add_download_list_checkbox("type_list", newTR, td)}`;
-        add_download();
-        td="";
-      }
-      all_checkbox_off("type_list");
+    .form_common_file{
+        
     }
 
 
@@ -466,9 +452,286 @@ h1{
       all_checkbox_off("type_list");
 
     }
+    #form_handmade{
+        display : none;
+    }
+    #form_problems{
+        display : none;
+    }
+    .result_form{
+        background-color: rgb(230, 230, 230);
+        float:left;
+        text-align: center;
+        width : 200px;
+        padding: 5px 5px 3px 5px;
+    }
+    .download_remove{
+      margin-left: 20%;
 
-  </script>
-  </div>
+    }
+.download{
+  float : left;
+  margin-right: 5px;
+}
+.remove{
+  float : left;
+}
+.download_btn{
+  padding : 5px 10px 5px 10px;
+  background-color: #0024FF;
+  border : none;
+  color : white;
+  width : 60px;
+  font-size: 0.7em;
+}
+.remove_btn{
+  padding : 5px 10px 5px 10px;
+  background-color: gray;
+  border : none;
+  color : white;
+  width : 60px;
+  font-size: 0.7em;
+}
+#file_table{
+  margin-top:10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 0.7em;
+}
+</style>
+<body>
+    <div style="text-align: right; font-size : 1em;">
+        <a href="{% url 'home' %}">메인페이지</a>
+        <a href="{% url 'upload' %}">업로드페이지</a>
+        <a href="{% url 'download' %}">다운로드페이지</a>
+    </div>
+    <h1>다운로드 페이지</h1>
+    <div id="wrap">
+        <div id="form">
+            <form action="">
+            <div>
+                <strong class="form_list"><span class="required">* </span> 교재 구분</strong>
+                <div class="form_p">
+                    <input type="checkbox" class="book_check" value="textbook" onclick="display_control(this.value, this.className);" required> 교과서
+                    <input type="checkbox" class="book_check" value="simul" onclick="display_control(this.value, this.className);" required> 모의고사
+                </div>
+                
+                <div id="form_simul">
+                    <strong class="form_list"><span class="required">* </span>발행 년도</strong>
+                    <div class="form_p">
+                        <select name="year" value="year" id="common_year" required>
+                            <option value="" >발행년도 선택</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                        </select>
+                    </div>
+                    <strong class="form_list"><span class="required">* </span>월</strong>
+                    <div class="form_p">
+                        <select name="month" value="month" id="simul_month" class="simul" required>
+                            <option value="" >월 선택</option>
+                            <option value="3">3</option>
+                            <option value="6">6</option>
+                            <option value="9">9</option>
+                            <option value="11 & 수능">11 & 수능</option>
+                            <option value="수능특강">수능특강</option>
+                            <option value="수능완성">수능완성</option>
+                            <option value="영독연">영독연</option>
+                        </select>
+                    </div>
+                    <div>
+                        <strong class="form_list"><span class="required">* </span>학년</strong>
+                        <div class="form_p">
+                            <select name="grade" value= "month" id="simul_month" class="simul required">
+                                <option value="">학년 선택</option>
+                                <option value="1">1학년</option>
+                                <option value="2">2학년</option>
+                                <option value="3">3학년</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="form_textbook">
+                    <strong class="form_list"><span class="required">* </span>교재 종류</strong>
+                    <div class="form_p">
+                        <select name="content_label" value="textbook_type" id="textbook_type" class="textbook" required>
+                            <option value="" >교재 선택</option>
+                            <option value="영어">영어</option>
+                            <option value="영어1">영어1</option>
+                            <option value="영어2">영어2</option>
+                            <option value="영어회화">영어회화</option>
+                            <option value="영어독해와작문">영어독해와작문</option>
+                            <option value="실용영어">실용영어</option>
+                            <option value="영어권문화">영어권문화</option>
+                            <option value="영미문학읽기">영미문학읽기</option>
+                            <option value="실용영어2">실용영어2</option>
+                            <option value="심화영어1">심화영어1</option>
+                            <option value="심화영어2">심화영어2</option>
+                            <option value="심화영어독해1">심화영어독해1</option>
+                            <option value="심화영어독해2">심화영어독해2</option>
+                            <option value="심화회화1">심화회화1</option>
+                            <option value="심화회화2">심화회화2</option>
+                            <option value="심화작문1">심화작문1</option>
+                            <option value="심화작문2">심화작문2</option>
+                        </select>
+                    </div>
+                    <strong class="form_list"><span class="required">* </span>출판사(주관)</strong>
+                    <div class="form_p">
+                        <select name="publisher" value="publisher" id="publisher" class="textbook" required>
+                            <option value="" >출판사 선택</option>
+                            <option value="YBM">YBM</option>
+                            <option value="교학">교학</option>
+                            <option value="금성">금성</option>
+                            <option value="능률">능률</option>
+                            <option value="다락원">다락원</option>
+                            <option value="동아">동아</option>
+                            <option value="미래">미래</option>
+                            <option value="비상">비상</option>
+                            <option value="지학">지학</option>
+                            <option value="천재">천재</option>
+                        </select>
+                    </div>
+                    <strong class="form_list"><span class="required">* </span>단원</strong>
+                    <div class="form_p">
+                        <select name="content_chapter" id="" class="textbook" required>
+                            <option value="" >단원 선택</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form_common">
+                    <strong class="form_list"><span class="required">* </span>종류</strong>
+                    <div class="form_p">
+                        <select name="category" id="" onchange="display_change(this.options[this.selectedIndex].value)" required>
+                            <option value="" >종류 선택</option>
+                            <option value="handmade">손필기</option>
+                            <!-- <option value="워크북">워크북</option> -->
+                            <option value="problems">변형문제</option>
+                            <!-- <option value="유의어">유의어</option> -->
+                        </select>
+                    </div>
+                </div>
+                <div id="form_handmade">
+                    <strong class="form_list"><span class="required">* </span>지문 선택</strong>
+                    <div class="form_p">
+                        <input type="checkbox" value="18">18
+                        <input type="checkbox" value="19">19
+                        <input type="checkbox" value="20">20
+                        <input type="checkbox" value="21">21
+                        <input type="checkbox" value="22">22 </br>
+                        <input type="checkbox" value="23">23
+                        <input type="checkbox" value="24">24
+                        <input type="checkbox" value="25">25
+                        <input type="checkbox" value="26">26
+                        <input type="checkbox" value="27">27 </br>
+                        <input type="checkbox" value="28">28
+                        <input type="checkbox" value="29">29
+                        <input type="checkbox" value="30">30
+                        <input type="checkbox" value="31">31
+                        <input type="checkbox" value="32">32 </br>
+                        <input type="checkbox" value="33">33
+                        <input type="checkbox" value="34">34
+                        <input type="checkbox" value="35">35
+                        <input type="checkbox" value="36">36
+                        <input type="checkbox" value="37">37 </br>
+                        <input type="checkbox" value="38">38
+                        <input type="checkbox" value="39">39
+                        <input type="checkbox" value="40">40
+                        <input type="checkbox" value="41">41
+                        <input type="checkbox" value="42">42 <input type="checkbox" value="43_45">43~45
+                    </div>
+                </div>
+                <div id="form_problems">
+                    <strong class="form_list"><span class="required">* </span>유형, 지문번호 선택</strong>
+                    <div class="form_p">
+                        <input type="checkbox" value="주제">주제
+                        <input type="checkbox" value="빈칸넣기">빈칸넣기
+                        <input type="checkbox" value="순서">순서
+                        <input type="checkbox" value="문장넣기">문장넣기
+                        <input type="checkbox" value="서술형">서술형
+                    </div>
+                </div>
+                
+            </div>
 
+            <script>
+                function display_on(targetName){
+                    document.getElementById(targetName).style.display = 'block';
+                }
+                function display_off(targetName){
+                    document.getElementById(targetName).style.display = 'none';
+                }
+                function display_control(value, className){
+                    if(value === "simul"){
+                        document.getElementsByClassName(className)[0].checked = false;
+                        display_off("form_textbook");
+                        display_on("form_simul");
+                        // required_control("simul", true);
+                        // required_control("textbook", false);
+                        
+                    }
+                    else if(value === "textbook"){
+                        document.getElementsByClassName(className)[1].checked = false;
+                        display_off("form_simul");
+                        display_on("form_textbook");
+                        // required_control("textbook", true);
+                        // required_control("simul", false);
+                        
+                    }
+                    else{
+                        display_off("form_simul");
+                        display_off("form_textbook");
+                    }
+
+                    var check_count = document.getElementsByClassName("form_common").length;
+                    for(var i=0; i<check_count; i++){
+                        document.getElementsByClassName("form_common")[i].style.display = "block";
+                    }
+                }
+                function display_change(value){
+                    if(value === "handmade"){
+                        display_on("form_handmade");
+                        display_off("form_problems");
+                    }
+                    else if(value === "problems"){
+                        display_off("form_handmade");
+                        display_on("form_problems");
+                    }
+
+                }
+            </script>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+        </div>
+        </form>
+        <div class="result_form">
+            선택내역
+            <div class="file_form">
+              <table border="1" id="file_table">
+                  <th>순서</th>
+                  <th>합칠 파일</th>
+                <th>선택</th>
+      
+              </table>
+            </div>
+            <div class="download_remove">
+              <div class="download">
+                <input type="button" value="다운로드" class="download_btn">
+              </div>
+              <div class="remove">
+                <input type="button" value="선택삭제" class="remove_btn" onclick="remove_download()">
+              </div>
+            </div>
+      
+        </div>
+    </div>
 </body>
 </html>
