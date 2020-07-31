@@ -1,6 +1,7 @@
 from django.db import models
 from uuid import uuid4
 from django.utils import timezone
+from .funcs import get_file_path_1, get_file_path_2
 
 # Create your models here.
 
@@ -24,10 +25,10 @@ class Content_1(models.Model): #모의고사
     month = models.CharField(max_length=50) #월
     content_grade = models.CharField(max_length=50)  #유형
     category = models.CharField(max_length=50) #교재유형
-    content_number_begin = models.CharField(max_length=5) #지문번호
-    content_number_end = models.CharField(max_length=5) #지문번호
-    content_text = models.TextField()
-    content_file = models.ImageField(blank=False, null=False, upload_to='images/') #파일
+    content_number_begin = models.CharField(max_length=50) #지문번호
+    content_number_end = models.CharField(max_length=50) #지문번호
+    content_text = models.TextField(blank=True)
+    content_file = models.ImageField(blank=True, null=False, upload_to=get_file_path_1) #파일
 
 class Content_2(models.Model): #교과서
     def __str__(self):
@@ -53,5 +54,5 @@ class Content_2(models.Model): #교과서
     category = models.CharField(max_length=50) #교재유형
     content_number_begin = models.CharField(max_length=50) #지문번호
     content_number_end = models.CharField(max_length=50) #지문번호
-    content_file = models.ImageField(blank=False, null=False, upload_to='images/') #파일
-    content_text = models.TextField()
+    content_file = models.ImageField(blank=True, null=False, upload_to=get_file_path_2) #파일
+    content_text = models.TextField(blank=True)
