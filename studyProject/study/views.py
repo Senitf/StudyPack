@@ -17,7 +17,7 @@ def upload(request):
             content.content_grade = request.POST.get('grade')
             content.category = request.POST.get('category')
             if content.category == "handmade":
-                content.content_file = request.POST.get('content_file')
+                content.content_file = request.FILES.get('content_file')
                 content.content_number_begin = request.POST.get('content_number_begin')
                 content.content_number_end = request.POST.get('content_number_end')
                 content.save()
