@@ -18,4 +18,8 @@ data structure & upload feature fix <br>
 20/07/27 <br>
 data model fix end <br>
 
+20/07/31 <br>
+seperate static files(css, js) from html files <br>
+fix data model, views.py <br>
+
 --

@@ -2,11 +2,510 @@
 <!doctype html>
 <html>
 <head>
-  <title>download</title>
+  <title>combine_materials</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <meta charset="utf-8">
 </head>
+<<<<<<< .merge_file_cuWu71
 <link rel="stylesheet" href="{% static 'download.css' %}">
 <script src="{% static 'download.js' %}"></script>
+=======
+<style>
+.menu{
+  position: relative;
+  right : 3px;
+  top:5px;
+  width:15px;
+}
+h1{
+  text-align: center;
+}
+#textbook{
+  display : none;
+}
+#simul{
+  display : none;
+}
+.divide{
+  float:left;
+  width:70%;
+}
+.result_form{
+  background-color: rgb(230, 230, 230);
+  float:left;
+  text-align: center;
+  width : 200px;
+  padding: 5px 5px 3px 5px;
+}
+.materials{
+  float:left;
+  width: 94px;
+  margin : 0px 20px 10px 10px;
+}
+.grade{
+  float:left;
+  width: 94px;
+  margin-right: 3%;
+}
+.year{
+  float:left;
+  width: 94px;
+  margin-right: 3%;
+}
+.month{
+  float:left;
+  width: 94px;
+  margin-right: 3%;
+}
+.type{
+  float:left;
+  width: 94px;
+}
+.publisher{
+  float:left;
+  width: 94px;
+  margin-right: 3%;
+}
+.textbook_type{
+  float:left;
+  width: 94px;
+  margin-right: 3%;
+}
+.textbox{
+  color : blue;
+}
+.select{
+  float:left;
+  width:100%;
+  text-align: center;
+  padding : 50px 0 0 0;
+}
+.select_btn{
+  padding : 10px 50px 10px 50px;
+
+}
+.download_remove{
+  margin-left: 20%;
+
+}
+.download{
+  float : left;
+  margin-right: 5px;
+}
+.remove{
+  float : left;
+}
+.download_btn{
+  padding : 5px 10px 5px 10px;
+  background-color: #0024FF;
+  border : none;
+  color : white;
+  width : 60px;
+  font-size: 0.7em;
+}
+.remove_btn{
+  padding : 5px 10px 5px 10px;
+  background-color: gray;
+  border : none;
+  color : white;
+  width : 60px;
+  font-size: 0.7em;
+}
+#file_table{
+  margin-top:10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 0.7em;
+}
+@media only all and (max-width : 800px){
+  .divide{
+    width:100%;
+  }
+  .materials{
+    width: 80px;
+  }
+  .grade{
+    width: 80px;
+  }
+  .year{
+    width: 80px;
+  }
+  .month{
+    width: 94px;
+  }
+  .type{
+    width: 94px;
+  }
+  .select{
+    width:100%;
+  }
+  .result_form{
+    position: absolute;
+    margin-top : 122px;
+    width: 200px;
+    margin-left: 70%;
+  }
+}
+</style>
+<body>
+    <div style="text-align: right; font-size : 1em;">
+        <a href="{% url 'home' %}">메인페이지</a>
+        <a href="{% url 'upload' %}">업로드페이지</a>
+        <a href="{% url 'download' %}">다운로드페이지</a>
+    <!--     
+        <a href="index.html"><img src="{% static 'menual.png' %}" class = "menu">사용법</a>
+        <a href="index.html"><img src="{% static 'notice.png' %}" class = "menu">공지</a>
+        <a href="index.html"><img src="{% static 'login.png' %}" class = "menu">홈화면 </a>
+        <a href="login.html"><img src="{% static 'create.png' %}" class = "menu">회원가입</a> -->
+      </div>
+  <h1>다운로드 페이지</h1>
+  <div class="select_form">
+    <div class="divide">
+      <select name='materials' class = "materials" onchange="display_select_value(this)">
+        <option value='' selected> 교재 구분 </option>
+        <option value='textbook'>교과서</option>
+        <option value='simul'>모의고사</option>
+      </select>
+      <script>
+      function display_on(name){
+        var selection = document.getElementById(name);
+        selection.style.display = 'block';
+      }
+      function display_off(name){
+        var selection = document.getElementById(name);
+        selection.style.display = 'none';
+      }
+      function display_select_value(select_obj){
+        var selected_index = select_obj.selectedIndex;
+        var selected_value = select_obj.options[selected_index].value;
+
+        //교과서 선택
+        if(selected_value === "textbook"){
+          display_on("textbook");
+          display_off("simul");
+        }
+        //모의고사 선택
+        else if(selected_value === "simul"){
+          display_on("simul");
+          display_off("textbook");
+        }
+        //미선
+        else{
+          display_off("simul");
+          display_off("textbook");
+
+        }
+      };
+      </script>
+      <div id="textbook">
+        <select id="publisher" name='publisher' class = "publisher">
+          <option value='' selected> 출판사 </option>
+          <option value='능률' class="publisher_list">능률</option>
+          <option value='비상' class="publisher_list">비상</option>
+
+        </select>
+        <!-- <div class="publisher">
+          출판사 </br>
+          <input type="checkbox" class="publisher_list" value="능률"> 능률 </br>
+          <input type="checkbox" class="publisher_list" value="비상"> 비상 </br>
+        </div> -->
+        <select id="textbook_type" name='textbook_type' class = "textbook_type">
+          <option value='' selected> 교재종류 </option>
+          <option value='영어' class="textbook_type_list">영어</option>
+          <option value='영어1' class="textbook_type_list">영어1</option>
+          <option value='영어2' class="textbook_type_list">영어2</option>
+          <option value='실용영어' class="textbook_type_list">실용영어</option>
+        </select>
+        <!-- <div class="textbook_type">
+          교재 종류 </br>
+          <input type="checkbox" class="textbook_type_list" value="영어"> 영어 </br>
+          <input type="checkbox" class="textbook_type_list" value="영어1"> 영어1 </br>
+          <input type="checkbox" class="textbook_type_list" value="영어2"> 영어2 </br>
+          <input type="checkbox" class="textbook_type_list" value="실용 영어"> 실용 영어 </br>
+        </div> -->
+        <div class="type">
+          <span class="textbox">교재 유형 선택</br></span>
+          <input type="checkbox" class="type_list" value="손필기"> 손필기</br>
+          <input type="checkbox" class="type_list" value="워크북"> 워크북</br>
+          <input type="checkbox" class="type_list" value="변형문제"> 변형문제</br>
+          <input type="checkbox" class="type_list" value="유의어"> 유의어</br>
+        </div>
+        <div class="select">
+          <input type="button" value="선택완료" class="select_btn" onclick="add_download_textbook()">
+        </div>
+      </div>
+      <div id="simul">
+        <select id = "grade" name='grade' class = "grade">
+          <option value='' selected> 학년 선택 </option>
+          <option value='1학년' class="grade_list">1학년</option>
+          <option value='2학년' class="grade_list">2학년</option>
+          <option value='3학년' class="grade_list">3학년</option>
+        </select>
+        <!-- <div class="grade">
+          학년 선택 </br>
+          <input type="checkbox" class="grade_list" value="1학년"> <span>1학년</br></span>
+          <input type="checkbox" class="grade_list" value="2학년"> <span>2학년</br></span>
+          <input type="checkbox" class="grade_list" value="3학년"> <span>3학년</br></span>
+        </div> -->
+        <select id="year" name='year' class = "year">
+          <option value='' selected> 연도 선택 </option>
+          <option value='2019' class="year_list">2019</option>
+          <option value='2020' class="year_list">2020</option>
+        </select>
+        <!-- <div class="year">
+          연도 선택 </br>
+          <input type="checkbox" class="year_list" value="2019"> 2019</br>
+          <input type="checkbox" class="year_list" value="2020"> 2020</br>
+
+        </div> -->
+        <select id="month" name='month' class = "month">
+          <option value='' selected> 시기 </option>
+          <option value='3월' class="month_list">3월</option>
+          <option value='6월' class="month_list">6월</option>
+          <option value='9월' class="month_list">9월</option>
+          <option value='11월 & 수능' class="month_list">11월 & 수능</option>
+          <option value='수능특강' class="month_list">수능특강</option>
+          <option value='수능완성' class="month_list">수능완성</option>
+          <option value='영독연' class="month_list">영독연</option>
+        </select>
+        <!-- <div class="month">
+          *</br>
+          <input type="checkbox" class="month_list" value="3월"> 3월</br>
+          <input type="checkbox" class="month_list" value="6월"> 6월</br>
+          <input type="checkbox" class="month_list" value="9월"> 9월</br>
+          <input type="checkbox" class="month_list" value="11월 & 수능"> 11월 & 수능</br>
+          <input type="checkbox" class="month_list" value="수능특강"> 수능특강</br>
+          <input type="checkbox" class="month_list" value="수능완성"> 수능완성</br>
+          <input type="checkbox" class="month_list" value="영독 "> 영독연</br>
+        </div> -->
+        <!-- <select name='type' class = "type">
+          <option value='' selected> 교재 유형 선택 </option>
+          <option value='손필기' class="type_list">손필기</option>
+          <option value='워크북' class="type_list">워크북</option>
+          <option value='변형문제' class="type_list">변형문제</option>
+          <option value='유의어' class="type_list">유의어</option>
+        </select> -->
+        <div class="type">
+          <span class="textbox">교재 유형 선택</br></span>
+          <input type="checkbox" class="type_list" value="손필기"> 손필기</br>
+          <input type="checkbox" class="type_list" value="워크북"> 워크북</br>
+          <input type="checkbox" class="type_list" value="변형문제"> 변형문제</br>
+          <input type="checkbox" class="type_list" value="유의어"> 유의어</br>
+        </div>
+        <div class="select">
+          <input type="button" value="선택완료" class="select_btn" onclick="add_download_simul()">
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="result_form">
+      선택내역
+      <div class="file_form">
+        <table border="1" id="file_table">
+	        <th>순서</th>
+        	<th>합칠 파일</th>
+          <th>선택</th>
+
+        </table>
+      </div>
+      <div class="download_remove">
+        <div class="download">
+          <input type="button" value="다운로드" class="download_btn">
+        </div>
+        <div class="remove">
+          <input type="button" value="선택삭제" class="remove_btn" onclick="remove_download()">
+        </div>
+      </div>
+
+  </div>
+  <script>
+    var index_file = 1;
+
+
+    function refresh_order(){
+      var check_count = document.getElementsByClassName("file_order").length;
+
+      for(var i=0; i<check_count; i++){
+        document.getElementsByClassName("file_order")[i].textContent = i+1;
+      }
+
+
+    }
+    function remove_download(){
+      var check_count = document.getElementsByClassName("checked_file_list").length;
+      $(".checked_file_list").remove();
+      index_file = index_file - check_count;
+      refresh_order();
+    }
+
+    // var selected_index = select_obj.selectedIndex;
+    // var selected_value = select_obj.options[selected_index].value;
+    //
+    // //교과서 선택
+    // if(selected_value === "textbook"){
+    //   display_on("textbook");
+    //   display_off("simul");
+    // }
+
+    function add_download_list_dropdown(name){
+      var targetNode = document.getElementById(name);
+      var selected_index = targetNode.selectedIndex;
+      return targetNode.options[selected_index].value;
+
+    }
+    function add_download_list_checkbox(name, newTR, td){
+      var check_count = document.getElementsByClassName(name).length;
+      for(var i=0; i<check_count; i++){
+        if(document.getElementsByClassName(name)[i].checked === true){
+          // newTR = document.createElement("tr");
+          var tem_td = document.getElementsByClassName(name)[i].value;
+          document.getElementsByClassName(name)[i].checked=false;
+          return tem_td;
+        }
+      }
+
+      // var check_count = document.getElementsByClassName(name).length;
+      // for(var i=0; i<check_count; i++){
+      //   if(document.getElementsByClassName(name)[i].checked === true){
+      //     // newTR = document.createElement("tr");
+      //     var tem_td = document.getElementsByClassName(name)[i].value;
+      //     return tem_td;
+      //   }
+      // }
+    }
+    var newTR;
+    var td="";
+
+    function handdle_checkbox_change(checkNode){
+
+      var childNode = checkNode.parentElement;//td
+      var targetNode = childNode.parentElement;//tr
+      var parent = targetNode.parentElement;//table
+
+
+      if(checkNode.checked === true)
+        targetNode.setAttribute("class", "checked_file_list");
+      else{
+        targetNode.setAttribute("class", "not_checked_file_list");
+      }
+    }
+
+    function add_download(){
+      newTR.innerHTML = `<td class="file_order">${index_file}</td> <td>${td}</td> <td><input type="checkbox" onchange="handdle_checkbox_change(this);" class="download_file_list" /></td>`;
+      var p = document.getElementById("file_table");
+      p.appendChild(newTR);
+      index_file++;
+    }
+    /* #upload_cancel_btn{
+        
+        
+    } */
+    #form_textbook{
+        display : none;
+    }
+    function all_checkbox_on(name){
+      var check_count = document.getElementsByClassName(name).length;
+      for(var i=0; i<check_count; i++){
+        document.getElementsByClassName(name)[i].checked=true;
+      }
+    }
+    function check_count_list(name){
+      var check_count = document.getElementsByClassName(name).length;
+      var check_count_real = 0;
+      for(var i=0; i<check_count; i++){
+        if(document.getElementsByClassName(name)[i].checked==true)
+          check_count_real++;
+      }
+      return check_count_real;
+    }
+    .form_common_file{
+        
+    }
+
+
+    function add_download_simul(){
+      var check_count = check_count_list("type_list");
+      for(var i=0; i<check_count; i++){
+        newTR = document.createElement("tr");
+        td = `${td}${add_download_list_dropdown("grade")}`;
+        td = `${td}-${add_download_list_dropdown("year")}`;
+        td = `${td}-${add_download_list_dropdown("month")}`;
+
+        // td = `${td}${add_download_list("grade", newTR, td)}`;
+        // td = `${td}-${add_download_list("year", newTR, td)}`;
+        // td = `${td}-${add_download_list("month", newTR, td)}`;
+        td = `${td}-${add_download_list_checkbox("type_list", newTR, td)}`;
+        add_download();
+        td="";
+      }
+      // newTR = document.createElement("tr");
+      // td = `${td}${add_download_list_dropdown("grade")}`;
+      // td = `${td}-${add_download_list_dropdown("year")}`;
+      // td = `${td}-${add_download_list_dropdown("month")}`;
+      //
+      // // td = `${td}${add_download_list("grade", newTR, td)}`;
+      // // td = `${td}-${add_download_list("year", newTR, td)}`;
+      // // td = `${td}-${add_download_list("month", newTR, td)}`;
+      // td = `${td}-${add_download_list_checkbox("type_list", newTR, td)}`;
+      // add_download();
+      // td="";
+      all_checkbox_off("type_list");
+
+    }
+    #form_handmade{
+        display : none;
+    }
+    #form_problems{
+        display : none;
+    }
+    .result_form{
+        background-color: rgb(230, 230, 230);
+        float:left;
+        text-align: center;
+        width : 200px;
+        padding: 5px 5px 3px 5px;
+    }
+    .download_remove{
+      margin-left: 20%;
+
+    }
+.download{
+  float : left;
+  margin-right: 5px;
+}
+.remove{
+  float : left;
+}
+.download_btn{
+  padding : 5px 10px 5px 10px;
+  background-color: #0024FF;
+  border : none;
+  color : white;
+  width : 60px;
+  font-size: 0.7em;
+}
+.remove_btn{
+  padding : 5px 10px 5px 10px;
+  background-color: gray;
+  border : none;
+  color : white;
+  width : 60px;
+  font-size: 0.7em;
+}
+#file_table{
+  margin-top:10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 0.7em;
+}
+</style>
+>>>>>>> .merge_file_2y3hKA
 <body>
     <div style="text-align: right; font-size : 1em;">
         <a href="{% url 'home' %}">메인페이지</a>
