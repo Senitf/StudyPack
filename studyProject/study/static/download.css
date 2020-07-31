@@ -1,0 +1,107 @@
+
+.menu{
+position: relative;
+right : 3px;
+top:5px;
+width:15px;
+}
+h1{
+text-align: center;
+}
+#wrap{
+    
+    margin : auto;
+    width : 500px;
+    
+}
+#form{
+    border : 0.5px solid gray;
+    padding : 10px;
+}
+.form_list{
+    float : left;
+    line-height: 50px;
+}
+.form_p{
+    margin-left : 30%;
+    line-height: 50px;
+}
+#btn_list{
+    text-align: center;
+}
+.form_btn{
+    width : 50px;
+    border-radius: 5px;
+    border : 0.1px;
+}
+#do_btn{
+    background-color: blue;
+    color : white;
+}
+/* #upload_cancel_btn{
+    
+    
+} */
+#form_textbook{
+    display : none;
+}
+#form_simul{
+    display : none;
+}
+.form_common{
+    display : none;
+}
+.form_common_file{
+    
+}
+.required{
+    color : red;
+}
+#form_handmade{
+    display : none;
+}
+#form_problems{
+    display : none;
+}
+.result_form{
+    background-color: rgb(230, 230, 230);
+    float:left;
+    text-align: center;
+    width : 200px;
+    padding: 5px 5px 3px 5px;
+}
+.download_remove{
+  margin-left: 20%;
+
+}
+.download{
+float : left;
+margin-right: 5px;
+}
+.remove{
+float : left;
+}
+.download_btn{
+padding : 5px 10px 5px 10px;
+background-color: #0024FF;
+border : none;
+color : white;
+width : 60px;
+font-size: 0.7em;
+}
+.remove_btn{
+padding : 5px 10px 5px 10px;
+background-color: gray;
+border : none;
+color : white;
+width : 60px;
+font-size: 0.7em;
+}
+#file_table{
+margin-top:10px;
+margin-bottom: 10px;
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+font-size: 0.7em;
+}
