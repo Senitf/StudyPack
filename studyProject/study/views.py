@@ -17,17 +17,18 @@ def upload(request):
             content.content_grade = request.POST.get('grade')
             content.category = request.POST.get('category')
             if content.category == "handmade":
-                content.content_file = request.POST.get('content_file')
                 content.content_number_begin = request.POST.get('content_number_begin')
                 content.content_number_end = request.POST.get('content_number_end')
+                content.content_file = request.FILES.get('content_file')
                 content.save()
 
                 return redirect('home')
             else:
-                content.content_number_begin = request.POST.get('content_number_begin')
+                content.content_number_begin = request.POST.get('content_number')
                 content.content_number_end = content.content_number_begin
                 content.content_text = request.POST.get('content_text')
                 content.save()
+                
                 return redirect('home')
 
         else:
@@ -39,14 +40,14 @@ def upload(request):
             content.content_chapter = request.POST.get('content_chapter')
             content.category = request.POST.get('category')
             if content.category == "handmade":
-                content.content_file = request.POST.get('content_file')
+                content.content_file = request.FILES.get('content_file')
                 content.content_number_begin = request.POST.get('content_number_begin')
                 content.content_number_end = request.POST.get('content_number_end')
                 content.save()
 
                 return redirect('home')
             else:
-                content.content_number_begin = request.POST.get('content_number_begin')
+                content.content_number_begin = request.POST.get('content_number')
                 content.content_number_end = content.content_number_begin
                 content.content_text = request.POST.get('content_text')
                 content.save()
