@@ -57,4 +57,6 @@ def upload(request):
         return render(request, 'study/upload.html')
 
 def download(request):
-    return render(request, 'study/download.html')
+    data_set_1 = Content_1.objects.all()
+    data_set_2 = Content_2.objects.all()
+    return render(request, 'study/download.html', {'data_set_1' : data_set_1, 'data_set_2' : data_set_2})
