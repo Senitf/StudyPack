@@ -195,7 +195,9 @@
                 <input type="button" value="선택삭제" class="remove_btn" onclick="remove_download()">
               </div>
             </div>
-      
+            {% for data_1 in data_set_1 %}
+            <a href="{{data_1.content_file.url}}" download="files">Download</a>
+            {% endfor %}
         </div>
     </div>
 </body>
