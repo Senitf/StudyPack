@@ -17,12 +17,13 @@
     <h1>다운로드 페이지</h1>
     <div id="wrap">
         <div id="form">
-            <form action="">
+            <form method="post" action="{% url 'download' %}">
+            {% csrf_token %}
             <div>
                 <strong class="form_list"><span class="required">* </span> 교재 구분</strong>
                 <div class="form_p">
-                    <input type="checkbox" class="book_check" value="textbook" onclick="display_control(this.value, this.className);" required> 교과서
-                    <input type="checkbox" class="book_check" value="simul" onclick="display_control(this.value, this.className);" required> 모의고사
+                    <input name="content_index" type="checkbox" class="book_check" value="textbook" onclick="display_control(this.value, this.className);" required> 교과서
+                    <input name="content_index" type="checkbox" class="book_check" value="simul" onclick="display_control(this.value, this.className);" required> 모의고사
                 </div>
                 
                 <div id="form_simul">
@@ -131,31 +132,31 @@
                 <div id="form_handmade">
                     <strong class="form_list"><span class="required">* </span>지문 선택</strong>
                     <div class="form_p">
-                        <input type="checkbox" value="18" class="text_number">18
-                        <input type="checkbox" value="19" class="text_number">19
-                        <input type="checkbox" value="20" class="text_number">20
-                        <input type="checkbox" value="21" class="text_number">21
-                        <input type="checkbox" value="22" class="text_number">22 </br>
-                        <input type="checkbox" value="23" class="text_number">23
-                        <input type="checkbox" value="24" class="text_number">24
-                        <input type="checkbox" value="25" class="text_number">25
-                        <input type="checkbox" value="26" class="text_number">26
-                        <input type="checkbox" value="27" class="text_number">27 </br>
-                        <input type="checkbox" value="28" class="text_number">28
-                        <input type="checkbox" value="29" class="text_number">29
-                        <input type="checkbox" value="30" class="text_number">30
-                        <input type="checkbox" value="31" class="text_number">31
-                        <input type="checkbox" value="32" class="text_number">32 </br>
-                        <input type="checkbox" value="33" class="text_number">33
-                        <input type="checkbox" value="34" class="text_number">34
-                        <input type="checkbox" value="35" class="text_number">35
-                        <input type="checkbox" value="36" class="text_number">36
-                        <input type="checkbox" value="37" class="text_number">37 </br>
-                        <input type="checkbox" value="38" class="text_number">38
-                        <input type="checkbox" value="39" class="text_number">39
-                        <input type="checkbox" value="40" class="text_number">40
-                        <input type="checkbox" value="41" class="text_number">41
-                        <input type="checkbox" value="42" class="text_number">42 <input type="checkbox" value="43_45" class="text_number">43~45
+                        <input name="content_number" type="checkbox" value="18" class="text_number">18
+                        <input name="content_number" type="checkbox" value="19" class="text_number">19
+                        <input name="content_number" type="checkbox" value="20" class="text_number">20
+                        <input name="content_number" type="checkbox" value="21" class="text_number">21
+                        <input name="content_number" type="checkbox" value="22" class="text_number">22 </br>
+                        <input name="content_number" type="checkbox" value="23" class="text_number">23
+                        <input name="content_number" type="checkbox" value="24" class="text_number">24
+                        <input name="content_number" type="checkbox" value="25" class="text_number">25
+                        <input name="content_number" type="checkbox" value="26" class="text_number">26
+                        <input name="content_number" type="checkbox" value="27" class="text_number">27 </br>
+                        <input name="content_number" type="checkbox" value="28" class="text_number">28
+                        <input name="content_number" type="checkbox" value="29" class="text_number">29
+                        <input name="content_number" type="checkbox" value="30" class="text_number">30
+                        <input name="content_number" type="checkbox" value="31" class="text_number">31
+                        <input name="content_number" type="checkbox" value="32" class="text_number">32 </br>
+                        <input name="content_number" type="checkbox" value="33" class="text_number">33
+                        <input name="content_number" type="checkbox" value="34" class="text_number">34
+                        <input name="content_number" type="checkbox" value="35" class="text_number">35
+                        <input name="content_number" type="checkbox" value="36" class="text_number">36
+                        <input name="content_number" type="checkbox" value="37" class="text_number">37 </br>
+                        <input name="content_number" type="checkbox" value="38" class="text_number">38
+                        <input name="content_number" type="checkbox" value="39" class="text_number">39
+                        <input name="content_number" type="checkbox" value="40" class="text_number">40
+                        <input name="content_number" type="checkbox" value="41" class="text_number">41
+                        <input name="content_number" type="checkbox" value="42" class="text_number">42 <input name="content_number" type="checkbox" value="43_45" class="text_number">43~45
                     </div>
                 </div>
                 <div id="form_problems">

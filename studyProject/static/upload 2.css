@@ -1,0 +1,58 @@
+.menu{
+    position: relative;
+    right : 3px;
+    top:5px;
+    width:15px;
+    }
+    h1{
+    text-align: center;
+    }
+    #upload_wrap{
+        
+        margin : auto;
+        width : 500px;
+        
+    }
+    #upload_form{
+        border : 0.5px solid gray;
+        padding : 10px;
+    }
+    .upload_form_list{
+        float : left;
+        line-height: 50px;
+    }
+    .upload_form_p{
+        margin-left : 30%;
+        line-height: 50px;
+    }
+    #upload_btn_list{
+        text-align: center;
+    }
+    .upload_form_btn{
+        width : 50px;
+        border-radius: 5px;
+        border : 0.1px;
+    }
+    #upload_do_btn{
+        background-color: blue;
+        color : white;
+    }
+    /* #upload_cancel_btn{
+        
+        
+    } */
+    #upload_form_textbook{
+        display: none;
+    }
+    #upload_form_simul{
+        display : none;
+    }
+    .upload_form_common{
+        display : none;
+    }
+    .upload_form_common_file{
+        display : none;
+    }
+    .required{
+        color : red;
+    }
