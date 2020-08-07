@@ -7,7 +7,7 @@ from .funcs import get_file_path_1, get_file_path_2
 
 class Content_1(models.Model): #모의고사
     def __str__(self):
-        object_name = self.year + "_" + self.month + "_" + self.content_grade + "_" + self.category + "_" + self.content_number_begin + "_" + self.content_number_end
+        object_name = self.year + "_" + self.month + "_" + self.content_grade + "_" + self.category + "_" + self.content_number
         return object_name
 
     '''
@@ -25,8 +25,7 @@ class Content_1(models.Model): #모의고사
     month = models.CharField(max_length=50) #월
     content_grade = models.CharField(max_length=50)  #유형
     category = models.CharField(max_length=50) #교재유형
-    content_number_begin = models.CharField(max_length=50) #지문번호
-    content_number_end = models.CharField(max_length=50) #지문번호
+    content_number = models.CharField(max_length=50) #지문번호
     content_text = models.TextField(blank=True)
     content_file = models.ImageField(blank=True, null=False, upload_to=get_file_path_1) #파일
 
