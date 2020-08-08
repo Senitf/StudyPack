@@ -22,9 +22,13 @@ def get_file_path_2(instance, filename):
 import os
 from PyPDF2 import PdfFileReader, PdfFileWriter
 
-def file_division(file_name, file_index, original_file, new_path):
+# def file_division(file_name, file_index, original_file, new_path):
     
-    pdf = PdfFileReader(originial_file)
+#     pdf = PdfFileReader(originial_file)
+def file_division(original_path, file_name, file_index, new_path):
+    item_path = os.path.join(original_path, file_name+".pdf")
+    
+    pdf = PdfFileReader(open(item_path, 'rb'))
 
     numberPages = pdf.getNumPages()
 

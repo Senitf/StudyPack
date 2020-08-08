@@ -18,9 +18,9 @@ def upload(request):
             content.category = request.POST.get('category')
             if content.category == "handmade":
                 content_number_list = request.getlist('content_number_list')
-                file_name_prefix = content.year + "_" + content.month + "_" + content.catent_grade + "_" + content.category
+                file_name_prefix = content.year + "_" + content.month + "_" + content.catent_grade + "_" + content.category+ "_"
                 content_file = request.FILES.get('content_file')
-                file_division(file_name_prefix, content_number_list, content_file, '..files/')
+                file_division("../uploads/images/content_1", file_name_prefix, content_number_list, content_file, '..files/')
                 for nums in content_number_list:
                     content.number = nums
                     content.content_file = '..files/' + file_name_prefix + "_" + nums
