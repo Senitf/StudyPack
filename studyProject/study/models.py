@@ -7,7 +7,7 @@ from .funcs import get_file_path_1, get_file_path_2
 
 class Content_1(models.Model): #모의고사
     def __str__(self):
-        object_name = self.year + "_" + self.month + "_" + self.content_grade + "_" + self.category + "_" + self.content_number_begin + "_" + self.content_number_end
+        object_name = self.year + "_" + self.month + "_" + self.content_grade + "_" + self.category + "_" + self.content_number
         return object_name
 
     '''

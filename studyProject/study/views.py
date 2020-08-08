@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Content_1 ,Content_2
 from .funcs import text_To_Image, file_division
+from django.core.files.storage import default_storage
+import time
+import os
 
 # Create your views here.
 
@@ -11,21 +14,26 @@ def upload(request):
     if request.method == 'POST':
         content_index = request.POST.get('content_index')
         if content_index == "simul":
-            content = Content_1()
-            content.year = request.POST.get('year')
-            content.month = request.POST.get('month')
-            content.content_grade = request.POST.get('grade')
-            content.category = request.POST.get('category')
-            if content.category == "handmade":
-                content_number_list = request.getlist('content_number_list')
-                file_name_prefix = content.year + "_" + content.month + "_" + content.catent_grade + "_" + content.category+ "_"
+            year = request.POST.get('year')
+            month = request.POST.get('month')
+            content_grade = request.POST.get('grade')
+            category = request.POST.get('category')
+            if category == "handmade":
+                content_number_list = request.POST.getlist('content_number_list')
+                file_name_prefix = year + "_" + month + "_" + content_grade + "_" + category
                 content_file = request.FILES.get('content_file')
-                file_division("../uploads/images/content_1", file_name_prefix, content_number_list, content_file, '..files/')
+                default_storage.save(file_name_prefix + ".pdf", content_file)
+                file_division('uploads/', file_name_prefix, content_number_list, 'uploads/images/cache/')
+                os.remove('uploads/' + file_name_prefix + ".pdf")
                 for nums in content_number_list:
-                    content.number = nums
-                    content.content_file = '..files/' + file_name_prefix + "_" + nums
-                    content.save
-
+                    new_content = Content_1()
+                    new_content.year = year
+                    new_content.month = month
+                    new_content.content_grade = content_grade
+                    new_content.category = category
+                    new_content.content_number = nums
+                    new_content.content_file = 'uploads/images/cache/' + file_name_prefix + "_" + nums + ".pdf"
+                    new_content.save()
                 return redirect('home')
             else:
                 content.content_number_begin = request.POST.get('content_number')
