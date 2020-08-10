@@ -22,4 +22,8 @@ data model fix end <br>
 seperate static files(css, js) from html files <br>
 fix data model, views.py <br>
 
+20/08/07 <br>
+update download & upload form <br>
+funcs.py seperate model updated <br>
+
 --
