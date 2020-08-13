@@ -29,7 +29,7 @@
                 <div id="form_simul">
                     <strong class="form_list"><span class="required">* </span>발행 년도</strong>
                     <div class="form_p">
-                        <select name="year" value="year" id="simul_year" required>
+                        <select name="year" value="year" id="simul_year" class="simul" required>
                             <option value="" >발행년도 선택</option>
                             <option value="2020">2020</option>
                             <option value="2019">2019</option>
@@ -55,7 +55,7 @@
                     <div>
                         <strong class="form_list"><span class="required">* </span>학년</strong>
                         <div class="form_p">
-                            <select name="grade" value= "month" id="simul_grade" class="simul required">
+                            <select name="grade" value= "month" id="simul_grade" class="simul" required>
                                 <option value="">학년 선택</option>
                                 <option value="1">1학년</option>
                                 <option value="2">2학년</option>
@@ -172,12 +172,16 @@
                 
             </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
             <div class="select">
-                <input type="button" value="선택완료" class="select_btn" onclick="add_download_simul()">
+                <input type="submit" value="선택다운" class="download_btn">
+                <!-- <input type="submit" value="선택다운" class="select_btn" onclick="add_download_simul()"> -->
+                {% for data_1 in data_set_1 %}
+                <a href="{{data_1.content_file.url}}" download="files">Download</a>
+                {% endfor %}
             </div>
         </div>
         </form>
         
-        <div class="result_form">
+        <!-- <div class="result_form">
             선택내역
             <div class="file_form">
               <table border="1" id="file_table">
@@ -200,7 +204,7 @@
             {% for data_1 in data_set_1 %}
             <a href="{{data_1.content_file.url}}" download="files">Download</a>
             {% endfor %}
-        </div>
+        </div> -->
     </div>
 </body>
 </html>
