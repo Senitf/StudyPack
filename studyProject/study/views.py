@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from wsgiref.util import FileWrapper
 from .models import Content_1 ,Content_2
-from .funcs import text_To_Image, file_division
+from .funcs import text_To_Image, file_division, file_mix
 from django.core.files.storage import default_storage
 import time
 import os
@@ -23,7 +25,7 @@ def upload(request):
                 file_name_prefix = year + "_" + month + "_" + content_grade + "_" + category
                 content_file = request.FILES.get('content_file')
                 default_storage.save(file_name_prefix + ".pdf", content_file)
-                file_division('uploads/', file_name_prefix, content_number_list, 'uploads/images/cache/')
+                file_division('uploads/', file_name_prefix, content_number_list, 'uploads/images/content_1/')
                 os.remove('uploads/' + file_name_prefix + ".pdf")
                 for nums in content_number_list:
                     new_content = Content_1()
@@ -69,8 +71,18 @@ def upload(request):
         return render(request, 'study/upload.html')
 
 def download(request):
+    if request.method == 'POST':
+        if request.POST.get('content_index') == "simul":
+            original_file_prefix = str(request.POST.get('year')) + "_" + str(request.POST.get('month')) + "_" + str(request.POST.get('grade')) + "_" + str(request.POST.get('category'))
+            original_file_index_list = request.POST.getlist('content_number')
+            filename = file_mix('uploads/images/cache/', original_file_prefix, original_file_index_list, 'uploads/images/cache/')
+            wrapper = FileWrapper(open('uploads/images/cache/' + filename, 'rb'))
+            response = HttpResponse(wrapper, content_type='application/force-download')
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename('uploads/images/cache/' + filename)
+            return response
+    return render(request, 'study/download.html')
     '''
-    if request.method == 'POST'
+    if request.method == 'POST':
         if request.POST.get('content_index') == "simul":
             data_set_1 = Content_1.objects.all()
             year = request.POST.get('year')
@@ -89,4 +101,3 @@ def download(request):
             else:
     else:
     '''
-    return render(request, 'study/download.html')
