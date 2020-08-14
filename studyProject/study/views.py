@@ -75,7 +75,7 @@ def download(request):
         if request.POST.get('content_index') == "simul":
             original_file_prefix = str(request.POST.get('year')) + "_" + str(request.POST.get('month')) + "_" + str(request.POST.get('grade')) + "_" + str(request.POST.get('category'))
             original_file_index_list = request.POST.getlist('content_number')
-            filename = file_mix('uploads/images/cache/', original_file_prefix, original_file_index_list, 'uploads/images/cache/')
+            filename = file_mix('uploads/images/content_1/', original_file_prefix, original_file_index_list, 'uploads/images/cache/')
             wrapper = FileWrapper(open('uploads/images/cache/' + filename, 'rb'))
             response = HttpResponse(wrapper, content_type='application/force-download')
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename('uploads/images/cache/' + filename)
