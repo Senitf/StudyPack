@@ -4,21 +4,36 @@ function display_on(targetName){
 function display_off(targetName){
     document.getElementById(targetName).style.display = 'none';
 }
+function required_control(className, boolvalue){
+    alert("hi");
+    var check_count = document.getElementsByClassName(className).length;
+    for(var i=0; i<check_count; i++){
+        document.getElementsByClassName(className)[i].required = boolvalue;
+    }
+    
+    //textbook의 display 상황이면 simul checkbox의 required를 false로 한다.
+    if(className === "textbook" && boolvalue === true){
+        document.getElementsByClassName("book_check")[1].required = false;
+    }
+    if(className === "simul" && boolvalue === true){
+        document.getElementsByClassName("book_check")[0].required = false;
+    }
+}
 function display_control(value, className){
     if(value === "simul"){
         document.getElementsByClassName(className)[0].checked = false;
         display_off("form_textbook");
         display_on("form_simul");
-        // required_control("simul", true);
-        // required_control("textbook", false);
+        required_control("simul", true);
+        required_control("textbook", false);
         
     }
     else if(value === "textbook"){
         document.getElementsByClassName(className)[1].checked = false;
         display_off("form_simul");
         display_on("form_textbook");
-        // required_control("textbook", true);
-        // required_control("simul", false);
+        required_control("textbook", true);
+        required_control("simul", false);
         
     }
     else{

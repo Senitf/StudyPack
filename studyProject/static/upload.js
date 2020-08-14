@@ -78,3 +78,15 @@ function change_max(value){
         document.getElementById("selected_max").options[i].style.display = 'block';
     }
 }
+
+function all_checkbox_control(id, name){
+    var count = document.getElementsByName(name).length;
+    for(var i=0; i<count; i++){
+        if(id.checked == false){
+            document.getElementsByName(name)[i].checked = true;
+        }
+        else{
+            document.getElementsByName(name)[i].checked = false;
+        }
+    }
+}
