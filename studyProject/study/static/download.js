@@ -5,7 +5,7 @@ function display_off(targetName){
     document.getElementById(targetName).style.display = 'none';
 }
 function required_control(className, boolvalue){
-    alert("hi");
+    
     var check_count = document.getElementsByClassName(className).length;
     for(var i=0; i<check_count; i++){
         document.getElementsByClassName(className)[i].required = boolvalue;

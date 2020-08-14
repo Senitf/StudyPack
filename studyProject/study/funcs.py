@@ -38,3 +38,24 @@ def file_division(original_path, file_name, file_index, new_path):
 
         with open(save_path, 'wb') as f:
             pdf_writer.write(f)
+
+def file_mix(original_path, original_file_prefix, original_file_index_list, new_file_path):
+
+    pdf_writer = PdfFileWriter()
+    output_name = original_file_prefix
+
+    for i in original_file_index_list:
+        original_file_name = original_file_prefix + "_" + i +".pdf"
+        item_path = os.path.join(original_path, original_file_name)
+
+        pdf = PdfFileReader(open(item_path, 'rb'))
+        pdf_writer.addPage(pdf.getPage(0))
+        output_name = output_name + "_" + i
+
+    output_name = output_name + ".pdf"
+    save_path = os.path.join(new_file_path, output_name)
+
+    with open(save_path, 'wb') as f:
+        pdf_writer.write(f)
+    
+    return output_name
