@@ -26,4 +26,8 @@ fix data model, views.py <br>
 update download & upload form <br>
 funcs.py seperate model updated <br>
 
+20/08/12 <br>
+download.html fix <br>
+final push to master <br>
+
 --
