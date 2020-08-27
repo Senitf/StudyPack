@@ -12,7 +12,7 @@
 
 ## Author
 
-👤 **Senitf, **
+👤 **Senitf,**
 
 * Website: https://github.com/Senitf
 * Github: [@Senitf,](https://github.com/Senitf,)
