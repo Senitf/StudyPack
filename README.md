@@ -26,7 +26,8 @@ django framework 를 기반으로 작동하도록 개발되었습니다. <br>
 HTML, CSS, JS를 사용해 사용자에게 보여지는 화면을 구성하였습니다. <br>
 
 <br>
-**main page** <br>
+**main page**
+<br>
 <img width="1680" alt="Screen Shot 2020-08-27 at 7 44 08 PM" src="https://user-images.githubusercontent.com/55660691/91433530-60849580-e89e-11ea-8601-ed1a8720e39b.png">
 <br>
 **uploading data**
