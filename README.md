@@ -12,10 +12,10 @@
 
 ## Author
 
-👤 **Senitf,**
+👤 **Senitf, dongho**
 
 * Website: https://github.com/Senitf
-* Github: [@Senitf,](https://github.com/Senitf,)
+* Github: [@Senitf, dongho](https://github.com/Senitf, https://github.com/dongho108)
 
 ## About StudyPack
 StudyPack은 개인 과외나 학원 수업 과정에서의 편의를 위해 작성되었습니다. <br>
